@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Ruby Meleé</h2>
+  <div class="row" id="main-row">
+    <div class="span8"><div id="code-mirror"></div></div>
+    <div class="span6"><div id="output"><pre></pre></div></div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var code_mirror = CodeMirror(document.getElementById('code-mirror'),
+    { value: "<%= @content.gsub!(/\n/,'\n').gsub(/\"/, '\"') %>",
+      mode:  "ruby",
+      lineNumbers: true });
+
+      window.melee_client = new MeleeClient('<%= @guid %>', '<%= @client_guid %>', code_mirror);
+  });
+</script>

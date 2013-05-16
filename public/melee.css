@@ -1,0 +1,37 @@
+body {
+  background: #3d3d3d;
+  color: #eee;
+}
+
+h2 { 
+  margin-left : 0px; font-size: 1.3em; 
+  font-size: 1.3em;
+  line-height: 0.8em;
+}
+
+.container { width : 1080px;}
+[class*="span"] { margin-left : 0; }
+#output { overflow-y: scroll; }
+#output > pre {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.3em;
+  font-size: 0.8em;
+  min-height: 100%;
+}
+#main-row, #main-row > [class*="span"], 
+  #main-row > [class*="span"] > div,
+  .CodeMirror { min-height: 100%;}
+
+#main-row > [class*="span"] > div
+{
+  background: #e9eaee;
+  border: 2px solid #ffffff;
+  padding: 5px;
+  margin: 2px 5px 0 0;
+  box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+  -moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+  -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+}
