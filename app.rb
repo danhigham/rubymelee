@@ -10,7 +10,7 @@ require 'ruby_melee'
 
 class RubyMeleeApp < Sinatra::Base
 
-  PROD_DB_URL = ''
+  PROD_DB_URL = ENV['RM_PROD_DB_URL']
 
   set :public_folder, 'public'
 
