@@ -83,7 +83,7 @@ class RubyMeleeApp < Sinatra::Base
   end
 
   def warden_client
-    File.file?('/tmp/warden.sock') ? RubyMelee::WardenClient : RubyMelee::FakeWardenClient
+    File.exist?('/tmp/warden.sock') ? RubyMelee::WardenClient : RubyMelee::FakeWardenClient
   end
 
 end
