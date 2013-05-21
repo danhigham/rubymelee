@@ -23,6 +23,8 @@ module RubyMelee
       response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
       client.disconnect
 
+      file.unlink
+
       response.stdout
     end
 
