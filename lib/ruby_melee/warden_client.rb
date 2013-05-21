@@ -19,9 +19,10 @@ module RubyMelee
       file.close
 
       client = open_client
+      client.copy_in :handle => container, :src_path => file.path, :dst_path => file.path
       response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
       client.disconnect
-      
+
       response.stdout
     end
 
