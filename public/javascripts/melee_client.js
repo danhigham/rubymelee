@@ -17,7 +17,7 @@
       this.has_control = false;
       this.postTimeout = null;
       if (Faye.Client != null) {
-        this.faye_client = new Faye.Client('http://localhost:8000/melee');
+        this.faye_client = new Faye.Client('http://faye.rubymelee.com/melee');
         this.faye_client.subscribe("/" + guid + "/sync", function(data) {
           if (data.sender !== _this.client_guid) {
             return _this.sync(data.body);

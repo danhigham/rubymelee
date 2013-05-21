@@ -35,7 +35,7 @@ class RubyMeleeApp < Sinatra::Base
 
   get '/melee/*' do
     melee = Melee.where(:guid => params[:splat]).first
-    # halt 404 if melee.nil?
+    halt 404 if melee.nil?
 
     @guid = melee.guid
     @content = melee.content
@@ -60,7 +60,7 @@ class RubyMeleeApp < Sinatra::Base
 
     em_thread = Thread.new {
       EM.run {
-        client = Faye::Client.new('http://localhost:8000/melee')
+        client = Faye::Client.new('http://faye.rubymelee.com/melee')
         client.publish("/#{@guid}/update", { 'content' => melee.content, 'output' => output }.to_json )      
         client.disconnect
       }

@@ -8,7 +8,7 @@ class MeleeClient
 
     # create faye_client
     if Faye.Client?
-      @faye_client = new Faye.Client('http://localhost:8000/melee');
+      @faye_client = new Faye.Client('http://faye.rubymelee.com/melee');
 
       @faye_client.subscribe "/#{guid}/sync", (data) =>
         @sync data.body if data.sender != @client_guid
