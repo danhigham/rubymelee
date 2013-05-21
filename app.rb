@@ -35,7 +35,7 @@ class RubyMeleeApp < Sinatra::Base
 
   get '/melee/*' do
     melee = Melee.where(:guid => params[:splat]).first
-    halt 404 if melee.nil?
+    # halt 404 if melee.nil?
 
     @guid = melee.guid
     @content = melee.content
