@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "author": "Dan Higham <dan@high.am>",
   "dependencies" : {
-    "faye"   :  "*",
-    "forever" :  "*"
+    "faye"   :  "*"
   },
   "license": "MIT",
   "engines": {
