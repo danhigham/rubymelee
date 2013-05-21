@@ -1,12 +1,15 @@
-require 'warden-client'
 require 'tempfile'
+require 'warden/client'
 
 module RubyMelee
   class WardenClient
 
     def self.launch_container
-      client = Warden::Client.new
-      return client.create
+      client = open_client
+      handle = client.create.handle
+      client.disconnect
+
+      handle
     end
 
     def self.run(container, content)
@@ -15,15 +18,26 @@ module RubyMelee
       file.write content
       file.close
 
-      client = Warden::Client.new
-      client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
+      client = open_client
+      response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
+      client.disconnect
+      
+      response.stdout
     end
 
     def self.destroy(container)
-      client = Warden::Client.new
+      client = open_client
       client.destroy :handle => container
+      client.disconnect
       true
     end
 
+    :private 
+
+    def self.open_client
+      client = Warden::Client.new '/tmp/warden.sock'
+      client.connect
+      client
+    end
   end
 end
