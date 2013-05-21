@@ -1,7 +1,7 @@
 source 'http://www.rubygems.org'
 
 gem 'sinatra'
-gem 'warden'
+gem 'warden-client', :git => 'git://github.com/cloudfoundry/warden.git'
 gem 'uuidtools'
 gem 'faye'
 gem 'eventmachine'
