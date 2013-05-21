@@ -1,0 +1,14 @@
+{
+  "name": "ruby-melee-faye-server",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "Dan Higham <dan@high.am>",
+  "dependencies" : {
+    "faye"   :  "*",
+    "forever" :  "*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
+}

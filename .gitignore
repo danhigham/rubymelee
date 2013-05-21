@@ -12,6 +12,7 @@ test/tmp
 test/version_tmp
 tmp
 config/deploy.rb
+server/node_modules
 
 # YARD artifacts
 .yardoc
