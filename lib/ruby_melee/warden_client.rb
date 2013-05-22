@@ -23,7 +23,7 @@ module RubyMelee
 
       # check the container still exists
       container_list = client.list.handles
-      container = container_list.include? container ? container : client.create.handle
+      container = container_list.include?(container) ? container : client.create.handle
 
       client.copy_in :handle => container, :src_path => file.path, :dst_path => file.path
       response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
