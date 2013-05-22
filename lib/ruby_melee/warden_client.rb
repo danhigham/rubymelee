@@ -21,9 +21,7 @@ module RubyMelee
 
       client = open_client
 
-      # check the container still exists
-      container_list = client.list.handles
-      container = container_list.include?(container) ? container : client.create.handle
+      container = ensure_container client, container
 
       client.copy_in :handle => container, :src_path => file.path, :dst_path => file.path
       response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
@@ -42,6 +40,12 @@ module RubyMelee
     end
 
     :private 
+
+    def self.ensure_container(client, container)
+      container_list = client.list.handles
+      return client.create.handle if container_list.nil?
+      return container_list.include?(container) ? container : client.create.handle
+    end
 
     def self.open_client
       client = Warden::Client.new '/tmp/warden.sock'
