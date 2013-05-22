@@ -20,7 +20,6 @@ module RubyMelee
       file.close
 
       client = open_client
-
       container = ensure_container client, container
 
       client.copy_in :handle => container, :src_path => file.path, :dst_path => file.path
