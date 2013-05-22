@@ -19,7 +19,7 @@ module RubyMelee
       # kill the temp file
       file.unlink
 
-      return output
+      [output, container]
     end
 
     def self.destroy(container)

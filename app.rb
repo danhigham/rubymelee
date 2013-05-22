@@ -56,7 +56,9 @@ class RubyMeleeApp < Sinatra::Base
     handle = melee.container_handle
     melee.update :content => request.POST['content']
 
-    output = warden_client.run handle, melee.content
+    output, new_handle = warden_client.run handle, melee.content
+
+    melee.update :container_handle => new_handle if new_handle != handle
 
     em_thread = Thread.new {
       EM.run {

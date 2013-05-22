@@ -13,19 +13,25 @@ module RubyMelee
     end
 
     def self.run(container, content)
+
       # create temp file
       file = Tempfile.new('melee.rb')
       file.write content
       file.close
 
       client = open_client
+
+      # check the container still exists
+      container_list = client.list.handles
+      container = container_list.include? container ? container : client.create.handle
+
       client.copy_in :handle => container, :src_path => file.path, :dst_path => file.path
       response = client.run :script => "/.rbenv/versions/1.9.3-p327/bin/ruby #{file.path} 2>&1", :handle => container
       client.disconnect
 
       file.unlink
 
-      response.stdout
+      [response.stdout, container]
     end
 
     def self.destroy(container)
