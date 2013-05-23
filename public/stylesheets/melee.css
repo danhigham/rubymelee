@@ -11,7 +11,7 @@ h2 {
 
 .container { width : 1080px;}
 [class*="span"] { margin-left : 0; }
-#output { overflow-y: scroll; }
+#output { position : absolute; overflow-y: scroll; top: 0; left: 0; right : 0; bottom: 0;}
 #output > pre {
   background-color: #fff;
   border: none;
@@ -35,3 +35,7 @@ h2 {
   -moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
   -webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
 }
+
+#output-pane { position: relative }
+#output-pane > #wait-overlay { display : none; position: absolute; top: 0; left: 0; right : 0; bottom: 0; z-index: 1; 
+  background: rgba(255,255,255,0.7) url(/images/loader.gif) 50% 50% no-repeat;} 

@@ -42,6 +42,7 @@ class MeleeClient
 
     @mirror.setValue msg.content
     $('#output pre').html msg.output
+    $('#wait-overlay').hide()
 
     @mirror.setCursor pos
     @mirror.on 'change', @do_sync
@@ -60,11 +61,15 @@ class MeleeClient
 
   post_content: () =>
     
+    # show overlay
+    $('#wait-overlay').show()
+
     melee_url = "/melee/#{@guid}"
     data = 
       content: @mirror.getValue()
 
     $.post melee_url, data, (return_data, status, jq_xhr) ->
       $('#output pre').html return_data.output
+      $('#wait-overlay').hide()
 
 window.MeleeClient = MeleeClient

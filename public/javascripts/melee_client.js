@@ -52,6 +52,7 @@
       pos = this.mirror.getCursor();
       this.mirror.setValue(msg.content);
       $('#output pre').html(msg.output);
+      $('#wait-overlay').hide();
       this.mirror.setCursor(pos);
       return this.mirror.on('change', this.do_sync);
     };
@@ -69,12 +70,14 @@
 
     MeleeClient.prototype.post_content = function() {
       var data, melee_url;
+      $('#wait-overlay').show();
       melee_url = "/melee/" + this.guid;
       data = {
         content: this.mirror.getValue()
       };
       return $.post(melee_url, data, function(return_data, status, jq_xhr) {
-        return $('#output pre').html(return_data.output);
+        $('#output pre').html(return_data.output);
+        return $('#wait-overlay').hide();
       });
     };
 
